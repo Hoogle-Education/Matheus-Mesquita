@@ -40,30 +40,32 @@ struct curso *inicializa()
 
 void leitura(struct curso *cursos)
 {
-  printf("# Digite os codigos dos cursos\n");
+  printf("#DIGITE OS CODIGOS DOS CURSOS\n");
   for (int i = 0; i < quantidade_cursos; i++)
   {
     printf("> Curso #%d - Codigo: ", i + 1);
     scanf(" %s", cursos[i].codigo_do_curso);
   }
+
+  printf("\n");
 }
 
 void leitura_alunos(struct curso *cursos)
 {
 
-  printf("INSIRA OS DADOS DOS ALUNOS\n");
+  printf("# INSIRA OS DADOS DOS ALUNOS\n");
 
   for (int i = 0; i < quantidade_alunos; i++)
   {
     char codigo[50];
     double CR;
 
-    printf("Insira os dados do aluno #%d\n", i + 1);
+    printf("> Insira os dados do aluno #%d\n", i + 1);
 
-    printf("codigo do curso: ");
+    printf("> codigo do curso: ");
     scanf(" %s", codigo);
 
-    printf("CR: ");
+    printf("> CR: ");
     scanf(" %lf", &CR);
 
     int pos = busca(cursos, codigo);
@@ -72,14 +74,14 @@ void leitura_alunos(struct curso *cursos)
       continue;
 
     if (CR > CR_min)
-    {
       cursos[pos].atingiu_CR++;
-    }
     else
-    {
       cursos[pos].nao_atingiu_CR++;
-    }
+
+    printf("\n");
   }
+
+  printf("\n");
 }
 
 int busca(struct curso *cursos, const char *codigo)
@@ -100,15 +102,15 @@ int busca(struct curso *cursos, const char *codigo)
 
 void exibe(struct curso cursos[])
 {
-  printf("------------------------\n");
-  printf("--------RELACAO DE CURSOS--------");
-  printf("------------------------\n");
+  printf("--------------------------------------\n");
+  printf("#RELATORIO DE ALUNOS E CURSOS\n");
+  printf("--------------------------------------\n");
 
   for (int i = 0; i < quantidade_cursos; i++)
   {
     printf("| CURSO #%s |\n", cursos[i].codigo_do_curso);
     printf("| Com CR minimo = %d\n", cursos[i].atingiu_CR);
     printf("| Sem CR minimo = %d\n\n", cursos[i].nao_atingiu_CR);
-    printf("------------------------\n");
+    printf("--------------------------------------\n");
   }
 }
